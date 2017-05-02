@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+    <bean id="hello" class="pri.tyron.test.spring.Hello">
+        <property name="name" value="Tyron"/>
+    </bean>
+    <bean id="aspectBean" class="pri.tyron.test.spring.TestAspect"/>
+    <bean class="pri.tyron.test.spring.ClassWithStaticBlock" lazy-init="false"/>
+    <aop:config>
+        <aop:aspect id="TestAspect" ref="aspectBean">
+            <aop:pointcut id="businessService" expression="execution(* pri.tyron.test.spring.*.*(..))" />
+            <aop:before pointcut-ref="businessService" method="doBefore"/>
+            <aop:after pointcut-ref="businessService" method="doAfter"/>
+            <aop:around pointcut-ref="businessService" method="doAround"/>
+            <aop:after-throwing pointcut-ref="businessService" method="doThrowing" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
