@@ -9,5 +9,6 @@ public class ClassWithStaticBlock {
     private static String env;
     static {
         env = System.getenv().get("JAVA_HOME")+" ;";
+
     }
 }
