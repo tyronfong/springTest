@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="all.properties"/>
+    <!--<typeAliases>-->
+        <!--<package name="pri.tyron.test.mybatis.beans"/>-->
+    <!--</typeAliases>-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${mybatis.local.driver}"/>
+                <property name="url" value="${mybatis.local.url}"/>
+                <property name="username" value="${mybatis.local.username}"/>
+                <property name="password" value="${mybatis.local.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/Region.xml"/>
+    </mappers>
+</configuration>
